@@ -1,0 +1,62 @@
+// Categories
+@baseURL = https://andy-json-setver-app.herokuapp.com/api/
+
+@resourceName = products
+GET {{baseURL}}/{{resourceName}}
+
+###
+
+# @name filterProducts
+GET {{baseURL}}/{{resourceName}}?color=purple&price_lte=700
+
+###
+
+# @name pagination
+GET {{baseURL}}/{{resourceName}}?_page=1&_limit=5
+
+###
+
+# @name sort
+GET {{baseURL}}/{{resourceName}}?_sort=price&_order=desc
+
+###
+
+# @name find
+GET {{baseURL}}/{{resourceName}}?name_like=tasty
+
+###
+
+POST {{baseURL}}/{{resourceName}}
+Content-Type: application/json
+
+  {
+    "categoryId": "e80b8b1b-b4e4-4526-b54d-ca37f67c8c8a",
+    "name": "Incredible Wooden Table",
+    "color": "yellow",
+    "price": 500,
+    "description": "New range of formal shirts are designed keeping you in mind. With fits and styling that will make you stand apart",
+    "thumbNail": "http://placeimg.com/400/400"
+  }
+
+###
+
+PATCH {{baseURL}}/{{resourceName}}/ZNXdKva
+Content-Type: application/json
+
+{
+    "categoryId": "e80b8b1b-b4e4-4526-b54d-ca37f67c8c8a",
+    "name": "Incredible Wooden Table",
+    "color": "red",
+    "price": 500,
+    "description": "New range of formal shirts are designed keeping you in mind. With fits and styling that will make you stand apart",
+    "thumbNail": "http://placeimg.com/400/400"
+  }
+
+###
+
+DELETE  {{baseURL}}/{{resourceName}}/2
+Content-Type: application/json
+
+{
+    "name": "Desktop"
+}
