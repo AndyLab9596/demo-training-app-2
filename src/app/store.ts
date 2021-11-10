@@ -3,9 +3,11 @@ import counterReducer from '../features/counter/counterSlice';
 import { combineReducers } from 'redux';
 import createSagaMiddleware from '@redux-saga/core';
 import rootSaga from "./rootSaga";
+import productReducer from '../features/product/productSlice';
 
 const rootReducer = combineReducers({
   counter: counterReducer,
+  product: productReducer
 });
 
 const sagaMiddleware = createSagaMiddleware()
