@@ -2,7 +2,8 @@ import React from "react";
 import { Route, Switch } from "react-router";
 import "./App.scss";
 import { PrivateRoute } from "./components/common";
-import Admin from "./components/layout/Admin";
+import AdminAntd from "./components/layout/AdminAntd/AdminAntd";
+import AdminMui from "./components/layout/AdminMui/AdminMui";
 import LoginPage from "./features/auth/pages/LoginPage";
 
 function App() {
@@ -13,7 +14,7 @@ function App() {
           <LoginPage />
         </Route>
         <PrivateRoute path="/adminSaga">
-          <Admin />
+          <AdminMui />
         </PrivateRoute>
       </Switch>
     </div>
