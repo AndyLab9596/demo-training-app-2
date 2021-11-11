@@ -1,4 +1,16 @@
+import {
+  AppBar,
+  Button,
+  List,
+  ListItem,
+  ListItemIcon,
+  ListItemText,
+  Toolbar,
+} from "@material-ui/core";
+import EmojiPeopleIcon from "@material-ui/icons/EmojiPeople";
 import React, { Fragment } from "react";
+import { Route, Switch } from "react-router";
+import ProductFeature from "../../../features/product";
 import {
   Header,
   Main,
@@ -8,18 +20,6 @@ import {
   Wrapper,
   WrapperSidebar,
 } from "./AdminMui.style";
-import {
-  AppBar,
-  Toolbar,
-  Button,
-  List,
-  ListItem,
-  ListItemIcon,
-  ListItemText,
-} from "@material-ui/core";
-import DashboardIcon from "@material-ui/icons/Dashboard";
-import EmojiPeopleIcon from "@material-ui/icons/EmojiPeople";
-import { Route, Switch } from "react-router";
 
 const AdminMui = () => {
   return (
@@ -41,7 +41,7 @@ const AdminMui = () => {
         <Sidebar>
           <WrapperSidebar>
             <List component="nav" aria-label="main mailbox folders">
-              <StyledLink to="/admin/product">
+              <StyledLink to="/adminSaga/product">
                 <ListItem button>
                   <ListItemIcon>
                     <EmojiPeopleIcon />
@@ -54,7 +54,9 @@ const AdminMui = () => {
         </Sidebar>
         <Main>
           <Switch>
-            <Route path="/adminSaga/product"></Route>
+            <Route path="/adminSaga/product">
+              <ProductFeature />
+            </Route>
           </Switch>
         </Main>
       </Wrapper>

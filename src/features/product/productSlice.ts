@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { ListParams, ListResponse, PaginationParams, Product } from "../../models";
+import { RootState } from "../../app/store";
 
 
 export interface ProductState {
@@ -53,6 +54,10 @@ const productSlice = createSlice({
 export const productActions = productSlice.actions;
 
 // Selectors
+export const selectProductList = (state: RootState) => state.product.list;
+export const selectProductLoading = (state: RootState) => state.product.loading;
+export const selectProductPagination = (state: RootState) => state.product.pagination
+export const selectProductFilter = (state: RootState) => state.product.filter
 
 // Reducers
 const productReducer = productSlice.reducer;
