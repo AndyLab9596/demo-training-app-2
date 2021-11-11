@@ -6,10 +6,13 @@ import {
   productActions,
   selectProductFilter,
   selectProductList,
+  selectProductPagination,
 } from "../productSlice";
 import { useHistory, useRouteMatch } from "react-router";
 import ProductTable from "../components/ProductTable";
-import { Product } from "../../../models";
+import { ListParams, Product } from "../../../models";
+import { Pagination } from "@material-ui/lab";
+import ProductSearch from "../components/ProductSearch";
 
 const ListPage = () => {
   const match = useRouteMatch();
@@ -17,6 +20,7 @@ const ListPage = () => {
   const dispatch = useAppDispatch();
   const filter = useAppSelector(selectProductFilter);
   const productList = useAppSelector(selectProductList);
+  const { _page, _limit, _totalRows } = useAppSelector(selectProductPagination);
   console.log("productList", productList);
 
   useEffect(() => {
@@ -31,6 +35,15 @@ const ListPage = () => {
     console.log("remove product", product);
   };
 
+  const handleChangePaginate = (event: any, page: number) => {
+    dispatch(productActions.setFilter({ ...filter, _page: page }));
+  };
+
+  const handleSearchDebounce = (newFilter: ListParams) => {
+    console.log(newFilter);
+    dispatch(productActions.searchDebounce(newFilter));
+  };
+
   return (
     <Box p={3}>
       <Box display="flex" justifyContent="space-between" alignItems="center">
@@ -42,9 +55,9 @@ const ListPage = () => {
         </Link>
       </Box>
 
-      {/* <Box mb={3}>
-        <StudentSearch filter={filter} onSearchChange={handleSearchChange} />
-      </Box> */}
+      <Box mb={3}>
+        <ProductSearch filter={filter} onSearchChange={handleSearchDebounce} />
+      </Box>
 
       {/* Product table */}
       <ProductTable
@@ -53,14 +66,14 @@ const ListPage = () => {
         onRemove={handleRemoveProduct}
       />
       {/* Pagination */}
-      {/* <Box mt={2} display="flex" justifyContent="center">
+      <Box mt={2} display="flex" justifyContent="center">
         <Pagination
           count={Math.ceil(_totalRows / _limit)}
           page={_page}
-          onChange={handleChange}
+          onChange={handleChangePaginate}
           color="primary"
         />
-      </Box> */}
+      </Box>
     </Box>
   );
 };

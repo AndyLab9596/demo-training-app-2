@@ -16,11 +16,11 @@ const initialState: ProductState = {
     list: [],
     filter: {
         _page: 1,
-        _limit: 10,
+        _limit: 6,
     },
     pagination: {
         _page: 1,
-        _limit: 10,
+        _limit: 6,
         _totalRows: 10
     }
 }
@@ -45,6 +45,10 @@ const productSlice = createSlice({
 
         setFilter(state, action: PayloadAction<ListParams>) {
             state.filter = action.payload
+        },
+
+        searchDebounce(state, action: PayloadAction<ListParams>) {
+
         }
 
     }
