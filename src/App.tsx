@@ -16,6 +16,9 @@ function App() {
         <PrivateRoute path="/adminSaga">
           <AdminMui />
         </PrivateRoute>
+        <PrivateRoute path="/adminThunk">
+          <AdminAntd />
+        </PrivateRoute>
       </Switch>
     </div>
   );
