@@ -1,6 +1,5 @@
 import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
-import { unwrapResult } from "@reduxjs/toolkit";
-import { Popconfirm, Table } from "antd";
+import { Button, Popconfirm, Table, Typography } from "antd";
 import React, { Fragment, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import productApi from "../../../../api/productApi";
@@ -8,11 +7,10 @@ import { useAppDispatch, useAppSelector } from "../../../../app/hooks";
 import { Product } from "../../../../models";
 import {
   fetchThunkProductList,
-  productThunkFilter,
   productThunkList,
 } from "../../productThunkSlice";
 import "./ProductListPage.scss";
-
+const { Text } = Typography;
 const ProductListPage = () => {
   const dispatch = useAppDispatch();
   const productList = useAppSelector(productThunkList);
@@ -65,7 +63,12 @@ const ProductListPage = () => {
       key: "price",
     },
     {
-      title: "Edit",
+      title: () => (
+        <div className="edit">
+          <Text>Edit</Text>
+          <Button>Add Product</Button>
+        </div>
+      ),
       dataIndex: "id",
       render: (text: string, product: Product) => {
         return (
@@ -78,7 +81,6 @@ const ProductListPage = () => {
               onConfirm={() => {
                 handleRemoveProduct(product.id);
               }}
-              // onCancel={cancel}
               okText="Yes"
               cancelText="No"
             >

@@ -19,7 +19,7 @@ const AdminAntd = () => {
         </Menu>
       </Sider>
       <Layout className="site-layout">
-        <Header className="site-layout-background" style={{ padding: 0 }} />
+        {/* <Header className="site-layout-background" style={{ padding: 0 }} /> */}
         <Content style={{ margin: "0 16px" }}>
           <ProductListPage />
         </Content>

@@ -22,7 +22,7 @@ GET {{baseURL}}/{{resourceName}}?_sort=price&_order=desc
 ###
 
 # @name find
-GET {{baseURL}}/{{resourceName}}?name_like=tasty
+GET {{baseURL}}/{{resourceName}}?name_like= 
 
 ###
 
