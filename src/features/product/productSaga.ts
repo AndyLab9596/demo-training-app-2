@@ -19,8 +19,6 @@ function* fetchProductSearch(action: PayloadAction<ListParams>) {
     yield put(productActions.setFilter(action.payload))
 }
 
-
-
 export function* productSaga() {
 
     yield takeLatest(productActions.fetchProductList, fetchProductList)

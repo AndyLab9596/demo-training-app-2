@@ -1,3 +1,4 @@
+/* eslint-disable no-restricted-globals */
 import { Box, Typography, Button } from "@material-ui/core";
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
@@ -13,10 +14,11 @@ import ProductTable from "../components/ProductTable";
 import { ListParams, Product } from "../../../models";
 import { Pagination } from "@material-ui/lab";
 import ProductSearch from "../components/ProductSearch";
+import productApi from "../../../api/productApi";
 
 const ListPage = () => {
   const match = useRouteMatch();
-  const histroy = useHistory();
+  const history = useHistory();
   const dispatch = useAppDispatch();
   const filter = useAppSelector(selectProductFilter);
   const productList = useAppSelector(selectProductList);
@@ -28,11 +30,17 @@ const ListPage = () => {
   }, [dispatch, filter]);
 
   const handleEditProduct = (product: Product) => {
-    console.log("edit product", product);
+    history.push(`${match.url}/${product.id}`);
   };
 
-  const handleRemoveProduct = (product: Product) => {
-    console.log("remove product", product);
+  const handleRemoveProduct = async (product: Product) => {
+    const productId = product.id;
+    try {
+      await productApi.removeProduct(productId);
+      dispatch(productActions.fetchProductList({ ...filter }));
+    } catch (error) {
+      dispatch(productActions.fetchProductListFailed("error.message"));
+    }
   };
 
   const handleChangePaginate = (event: any, page: number) => {

@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
 import { Product } from "../../../models";
 import {
   TableContainer,
@@ -22,6 +22,25 @@ export interface ProductTableProps {
 }
 
 const ProductTable = ({ productList, onEdit, onRemove }: ProductTableProps) => {
+  const [product, setProduct] = useState<Product>();
+  const [open, setOpen] = useState(false);
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const handleRemoveProduct = (product: Product) => {
+    setProduct(product);
+    setOpen(true);
+  };
+
+  const handleRemoveConfirm = (product: Product) => {
+    if (onRemove) {
+      onRemove(product);
+    }
+    setOpen(false);
+  };
+
   return (
     <Fragment>
       <TableContainer>
@@ -62,8 +81,7 @@ const ProductTable = ({ productList, onEdit, onRemove }: ProductTableProps) => {
                   <Button
                     variant="outlined"
                     color="secondary"
-                    // onClick={() => onRemove?.(student)}
-                    // onClick={() => handleRemoveStudent(student)}
+                    onClick={() => handleRemoveProduct(product)}
                     size="small"
                   >
                     Remove
@@ -75,16 +93,16 @@ const ProductTable = ({ productList, onEdit, onRemove }: ProductTableProps) => {
         </Table>
       </TableContainer>
       {/* Dialog */}
-      {/* <Dialog
+      <Dialog
         open={open}
         onClose={handleClose}
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
-        <DialogTitle id="alert-dialog-title">{"Remove student?"}</DialogTitle>
+        <DialogTitle id="alert-dialog-title">{"Remove Product?"}</DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
-            Are you sure to remove student {student?.name} ?
+            Are you sure to remove product {product?.name} ?
           </DialogContentText>
         </DialogContent>
         <DialogActions>
@@ -94,12 +112,12 @@ const ProductTable = ({ productList, onEdit, onRemove }: ProductTableProps) => {
           <Button
             color="primary"
             autoFocus
-            onClick={() => handleRemoveConfirm?.(student as Student)}
+            onClick={() => handleRemoveConfirm?.(product as Product)}
           >
             Agree
           </Button>
         </DialogActions>
-      </Dialog> */}
+      </Dialog>
     </Fragment>
   );
 };
