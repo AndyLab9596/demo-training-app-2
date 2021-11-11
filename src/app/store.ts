@@ -4,10 +4,12 @@ import { combineReducers } from 'redux';
 import createSagaMiddleware from '@redux-saga/core';
 import rootSaga from "./rootSaga";
 import productReducer from '../features/product/productSlice';
+import productThunkReducer from '../features/productThunk/productThunkSlice';
 
 const rootReducer = combineReducers({
   counter: counterReducer,
-  product: productReducer
+  product: productReducer,
+  productThunk: productThunkReducer
 });
 
 const sagaMiddleware = createSagaMiddleware()
