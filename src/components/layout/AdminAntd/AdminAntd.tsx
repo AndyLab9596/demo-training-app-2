@@ -1,34 +1,13 @@
 import { PieChartOutlined } from "@ant-design/icons";
-import { unwrapResult } from "@reduxjs/toolkit";
 import { Layout, Menu } from "antd";
-import React, { useEffect } from "react";
-import { useAppDispatch, useAppSelector } from "../../../app/hooks";
-import {
-  fetchThunkProductList,
-  productThunkFilter,
-  productThunkList,
-} from "../../../features/productThunk/productThunkSlice";
+import React from "react";
+import ProductListPage from "../../../features/productThunk/components/ProductListPage/index";
 import "./AdminAntd.scss";
 
 const { Header, Content, Footer, Sider } = Layout;
 const { SubMenu } = Menu;
 
 const AdminAntd = () => {
-  const dispatch = useAppDispatch();
-  const filter = useAppSelector(productThunkFilter);
-  const productList = useAppSelector(productThunkList);
-
-  console.log("productList", productList);
-  useEffect(() => {
-    (async () => {
-      try {
-        const response = await dispatch(fetchThunkProductList(filter));
-        const result = unwrapResult(response);
-      } catch (error) {
-        console.log(error);
-      }
-    })();
-  }, [filter, dispatch]);
   return (
     <Layout style={{ minHeight: "100vh" }}>
       <Sider collapsible>
@@ -41,7 +20,9 @@ const AdminAntd = () => {
       </Sider>
       <Layout className="site-layout">
         <Header className="site-layout-background" style={{ padding: 0 }} />
-        <Content style={{ margin: "0 16px" }}></Content>
+        <Content style={{ margin: "0 16px" }}>
+          <ProductListPage />
+        </Content>
         <Footer style={{ textAlign: "center" }}>HD Web training program</Footer>
       </Layout>
     </Layout>
