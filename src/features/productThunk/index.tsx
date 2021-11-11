@@ -1,8 +1,6 @@
 import { Box } from "@material-ui/core";
 import React from "react";
-import { Route, Switch, useRouteMatch } from "react-router";
-import AddEditThunkPage from "./pages/AddEditThunkPage";
-import ListThunkPage from "./pages/ListThunkPage";
+import { useRouteMatch } from "react-router";
 
 const ProductThunkFeature = () => {
   const match = useRouteMatch();

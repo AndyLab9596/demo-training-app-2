@@ -27,8 +27,8 @@ const initialState: ProductState = {
 
 export const fetchThunkProductList = createAsyncThunk(
     'product/getList',
-    async (params: ListParams) => {
-        const response = await productApi.getAllProduct(params);
+    async () => {
+        const response = await productApi.getAll();
         return response;
     }
 )
@@ -51,10 +51,9 @@ const productThunkSlice = createSlice({
             .addCase(fetchThunkProductList.pending, (state) => {
                 state.loading = true;
             })
-            .addCase(fetchThunkProductList.fulfilled, (state, action: PayloadAction<ListResponse<Product>>) => {
+            .addCase(fetchThunkProductList.fulfilled, (state, action: PayloadAction<Product[]>) => {
                 state.loading = false;
-                state.list = action.payload.data;
-                state.pagination = action.payload.pagination;
+                state.list = action.payload;
             })
             .addCase(fetchThunkProductList.rejected, (state, action: PayloadAction<any>) => {
                 state.loading = false
