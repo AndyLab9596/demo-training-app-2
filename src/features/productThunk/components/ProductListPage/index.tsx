@@ -3,6 +3,7 @@ import { unwrapResult } from "@reduxjs/toolkit";
 import { Popconfirm, Table } from "antd";
 import React, { Fragment, useEffect } from "react";
 import { NavLink } from "react-router-dom";
+import productApi from "../../../../api/productApi";
 import { useAppDispatch, useAppSelector } from "../../../../app/hooks";
 import { Product } from "../../../../models";
 import {
@@ -14,20 +15,27 @@ import "./ProductListPage.scss";
 
 const ProductListPage = () => {
   const dispatch = useAppDispatch();
-  const filter = useAppSelector(productThunkFilter);
   const productList = useAppSelector(productThunkList);
 
   console.log("productList", productList);
   useEffect(() => {
     (async () => {
       try {
-        const response = await dispatch(fetchThunkProductList());
-        const result = unwrapResult(response);
+        await dispatch(fetchThunkProductList());
       } catch (error) {
         console.log(error);
       }
     })();
-  }, [filter, dispatch]);
+  }, [dispatch]);
+
+  const handleRemoveProduct = async (productId: string) => {
+    try {
+      await productApi.removeProduct(productId);
+      dispatch(fetchThunkProductList());
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const columns = [
     {
@@ -68,7 +76,7 @@ const ProductListPage = () => {
             <Popconfirm
               title="Are you sure to delete this product?"
               onConfirm={() => {
-                console.log("abc");
+                handleRemoveProduct(product.id);
               }}
               // onCancel={cancel}
               okText="Yes"
