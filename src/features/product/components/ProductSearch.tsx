@@ -1,12 +1,7 @@
-import {
-  Box,
-  FormControl,
-  InputAdornment,
-  OutlinedInput,
-} from "@material-ui/core";
-import React from "react";
-import { ChangeEvent } from "react-router/node_modules/@types/react";
-import { ListParams } from "../../../models";
+import { Box, FormControl, InputAdornment, OutlinedInput } from '@material-ui/core';
+import React from 'react';
+import { ChangeEvent } from 'react-router/node_modules/@types/react';
+import { ListParams } from '../../../models';
 
 interface ProductSearchProps {
   filter: ListParams;
@@ -29,9 +24,7 @@ const ProductSearch = ({ filter, onSearchChange }: ProductSearchProps) => {
         <OutlinedInput
           id="search-by-name"
           onChange={handleDebounceSearch}
-          startAdornment={
-            <InputAdornment position="start">Search</InputAdornment>
-          }
+          startAdornment={<InputAdornment position="start">Search By Name</InputAdornment>}
         />
       </FormControl>
     </Box>
