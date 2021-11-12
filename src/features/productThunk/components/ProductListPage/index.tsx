@@ -15,9 +15,11 @@ import {
   productThunkList,
 } from "../../productThunkSlice";
 import "./ProductListPage.scss";
+import { useHistory } from "react-router";
 const { Text } = Typography;
 
 const ProductListPage = () => {
+  const history = useHistory();
   const dispatch = useAppDispatch();
   const productList = useAppSelector(productThunkList);
 
@@ -39,6 +41,10 @@ const ProductListPage = () => {
     } catch (error) {
       console.log(error);
     }
+  };
+
+  const handleAddProduct = () => {
+    history.push("/adminThunk/product/add");
   };
 
   const columns = [
@@ -96,7 +102,7 @@ const ProductListPage = () => {
       title: () => (
         <div className="edit">
           <Text>Edit</Text>
-          <Button>Add Product</Button>
+          <Button onClick={() => handleAddProduct()}>Add Product</Button>
         </div>
       ),
       dataIndex: "id",

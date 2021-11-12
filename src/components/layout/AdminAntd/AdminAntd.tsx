@@ -1,9 +1,8 @@
 import { PieChartOutlined } from "@ant-design/icons";
 import { Layout, Menu } from "antd";
 import React from "react";
-import { Route, Switch, useParams } from "react-router";
+import { Route, Switch } from "react-router";
 import ProductThunkFeature from "../../../features/productThunk";
-import ProductListPage from "../../../features/productThunk/components/ProductListPage/index";
 import "./AdminAntd.scss";
 
 const { Header, Content, Footer, Sider } = Layout;
@@ -25,7 +24,6 @@ const AdminAntd = () => {
         <Content style={{ margin: "0 16px" }}>
           <Switch>
             <Route path="/adminThunk/product/">
-              {/* <ProductListPage /> */}
               <ProductThunkFeature />
             </Route>
           </Switch>
