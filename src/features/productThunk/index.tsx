@@ -1,23 +1,23 @@
 import { Box } from "@material-ui/core";
 import React from "react";
-import { useRouteMatch } from "react-router";
+import { Route, Switch } from "react-router";
+import AddEditProductListPage from "./components/AddEditProductPage";
+import ProductListPage from "./components/ProductListPage";
 
 const ProductThunkFeature = () => {
-  const match = useRouteMatch();
-
   return (
     <Box>
-      {/* <Switch>
-        <Route path={"/adminThunk/product"} exact>
-          <ListThunkPage />
-        </Route>
-        <Route path={`/adminThunk/product/add`}>
-          <AddEditThunkPage />
+      <Switch>
+        <Route path="/adminThunk/product/" exact>
+          <ProductListPage />
         </Route>
         <Route path={`/adminThunk/product/:productId`}>
-          <AddEditThunkPage />
+          <AddEditProductListPage />
         </Route>
-      </Switch> */}
+        <Route path={`/adminThunk/product/add`}>
+          <AddEditProductListPage />
+        </Route>
+      </Switch>
     </Box>
   );
 };
