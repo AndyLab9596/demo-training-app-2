@@ -11,10 +11,10 @@ const ProductThunkFeature = () => {
         <Route path="/adminThunk/product/" exact>
           <ProductListPage />
         </Route>
-        <Route path={`/adminThunk/product/:productId`}>
+        <Route path={`/adminThunk/product/add`}>
           <AddEditProductListPage />
         </Route>
-        <Route path={`/adminThunk/product/add`}>
+        <Route path={`/adminThunk/product/:productId`}>
           <AddEditProductListPage />
         </Route>
       </Switch>

@@ -32,7 +32,7 @@ const AddEditProductListPage = () => {
         <ArrowLeftOutlined /> Back To Product List
       </Link>
 
-      <div></div>
+      <div className="editArea"></div>
     </div>
   );
 };
